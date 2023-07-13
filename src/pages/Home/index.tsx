@@ -1,26 +1,31 @@
-import { BookCard, Button, ButtonLogin, Container, Content, HeaderTrending, NavBar, TrendingBooks } from "./styles";
-import { Binoculars, CaretRight, ChartLineUp, SignIn, Star } from "@phosphor-icons/react";
-import Image from "next/image";
-
-import Logo from '../../images/Logo.png'
+import { CaretRight, ChartLineUp } from "@phosphor-icons/react";
 
 import Rating from "@/components/Rating";
 import Comment from "@/components/Comment";
+import Navbar from "@/components/Navbar";
+
+import {
+  BookCard,
+  Container,
+  Content,
+  HeaderTrending,
+  TrendingBooks
+} from "./styles";
 
 export default function Home() {
   return (
     <Container>
-      <NavBar>
-        <div>
-          <Image src={Logo} alt="Logo" />
-          <Button active="true"><ChartLineUp size={24} />Início</Button>
-          <Button><Binoculars size={24} />Explorar</Button>
-        </div>
-        <ButtonLogin>Fazer login <SignIn size={24} /></ButtonLogin>
-      </NavBar>
+      <Navbar />
       <Content>
         <span><ChartLineUp size={28} />Início</span>
         <p>Avaliações mais recentes</p>
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
         <Comment />
       </Content>
       <TrendingBooks>

@@ -1,23 +1,20 @@
-import Image from "next/image";
+import Avatar from "../Avatar";
+import Rating from "../Rating";
+
 import {
   ContainerComment,
-  ContainerAvatar,
   HeaderComment,
   TitleComment,
   ContentComment,
   InfoBook
 } from "./styles";
-import Rating from "../Rating";
-import Avatar from '../../images/Avatar.png'
 
 export default function Comment() {
   return (
     <ContainerComment>
       <HeaderComment>
         <TitleComment>
-          <ContainerAvatar>
-            <Image src={Avatar} alt="Avatar" />
-          </ContainerAvatar>
+          <Avatar />
           <div>
             <h2>Gabriel Oliveira</h2>
             <p>Hoje</p>
@@ -32,7 +29,11 @@ export default function Comment() {
         <InfoBook>
           <h2>O Hobbit</h2>
           <h3>J.R.R Tolkien</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quibusdam sunt facere perferendis saepe reprehenderit expedita reiciendis molestiae doloribus rem commodi eos aspernatur, impedit quis illum consequatur vero asperiores iste.</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quibusdam sunt facere
+            perferendis saepe reprehenderit expedita reiciendis molestiae doloribus rem commodi
+            eos aspernatur, impedit quis illum consequatur vero asperiores iste.
+          </p>
         </InfoBook>
       </ContentComment>
     </ContainerComment>

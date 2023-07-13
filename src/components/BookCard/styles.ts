@@ -1,22 +1,37 @@
 import { styled } from "@stitches/react"
 
-export const ContainerComment = styled('div', {
+export const ContainerCard = styled('div', {
   width: '608px',
-  height: '280px',
+  minHeight: '280px',
+  height: '100%',
   background: '$gray700',
   borderRadius: '8px',
-  padding: '$6',
+  padding: '$8',
+  variants: {
+    'size': {
+      'small': {
+        width: '319px',
+        height: '184px'
+      }
+    }
+  }
 })
 
 export const HeaderComment = styled('div', {
   display: 'flex',
-  justifyContent: 'space-between',
+  gap: '$4',
   marginBottom: '$6',
+  'img': {
+    width: '98px',
+    height: '134px',
+    border: '1px solid red'
+  }
 })
 
-export const TitleComment = styled('div', {
+export const TitleCard = styled('div', {
   display: 'flex',
-  gap: '$4',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
   'h2': {
     fontSize: '$md',
     fontWeight: '$medium',
@@ -30,24 +45,10 @@ export const TitleComment = styled('div', {
   },
 })
 
-export const ContentComment = styled('div', {
+export const ContentCard = styled('div', {
   display: 'flex',
   height: '100%',
-  gap: '1rem',
-})
-
-export const InfoBook = styled('div', {
-  'h2': {
-    fontSize: '$md',
-    color: '$gray100',
-    marginBottom: '$1'
-  },
-  'h3': {
-    fontSize: '$sm',
-    fontWeight: '$regular',
-    color: '$gray400',
-    marginBottom: '$6'
-  },
+  gap: '$4',
   'p': {
     fontSize: '$xs',
     fontWeight: '$regular',
