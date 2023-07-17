@@ -38,7 +38,7 @@ export const Button = styled('button', {
   background: '$gray600',
   borderRadius: '8px',
   cursor: 'pointer',
-
+  transition: "0.2s",
   '&:hover': {
     background: '$gray500'
   }

@@ -1,8 +1,11 @@
-import { Button, Container, Content, ContentImage } from "./styles";
-import { Icon } from '@iconify/react';
+import { signIn } from "next-auth/react";
 import Image from 'next/image'
+
 import Logo from '../../images/login-img.png';
 import { RocketLaunch } from "@phosphor-icons/react";
+import { Icon } from '@iconify/react';
+
+import { Button, Container, Content, ContentImage } from "./styles";
 
 export default function Login() {
   return (
@@ -20,14 +23,14 @@ export default function Login() {
           <span>Boas vindas!</span>
           <p>Faça seu login ou acesse como visitante.</p>
         </div>
-        <Button>
+        <Button onClick={() => signIn('google')}>
           <Icon
             icon="logos:google-icon"
             style={{ fontSize: '32px', border: 'none' }}
           />
           Entrar com Google
         </Button>
-        <Button>
+        <Button onClick={() => signIn('github')}>
           <Icon
             icon="akar-icons:github-fill"
             style={{ fontSize: '32px', border: 'none' }}
