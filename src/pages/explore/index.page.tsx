@@ -4,8 +4,33 @@ import { Binoculars } from "@phosphor-icons/react";
 import Input from "@/components/Input";
 import BookCard from "@/components/BookCard";
 import Book from "@/components/Book";
+import { api } from "@/lib/axios";
+import { useEffect, useState } from "react";
+
+interface BookProps {
+  author: string
+  cover_url: string
+  created_at: string
+  id: string
+  name: string
+  summary: string
+  total_pages: number
+}
 
 export default function Explore() {
+  const [books, setBooks] = useState<BookProps[] | null>(null)
+  const getBooks = async () => {
+    try {
+      const response = await api.get('/get/books')
+      const books = response.data
+      setBooks(books)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  useEffect(() => {
+    getBooks()
+  }, [])
   return (
     <Container>
       <Navbar />
@@ -25,17 +50,9 @@ export default function Explore() {
           <Button>Suspense</Button>
         </Categories>
         <ListBooks>
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
+          {books?.map((book) => (
+            <Book key={book.id} book={book} />
+          ))}
         </ListBooks>
       </Content>
     </Container>

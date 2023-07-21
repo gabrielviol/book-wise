@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logo from '../../images/Logo.png'
+import Logo from '../../../public/images/Logo.png'
 import { Binoculars, ChartLineUp, SignIn } from "@phosphor-icons/react";
 import { Button, ButtonLogin, NavBar } from "./styles";
 

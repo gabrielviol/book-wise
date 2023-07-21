@@ -1,13 +1,14 @@
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from 'next/image'
 
-import Logo from '../../images/login-img.png';
+import Logo from '../../../public/images/login-img.png';
 import { RocketLaunch } from "@phosphor-icons/react";
 import { Icon } from '@iconify/react';
 
 import { Button, Container, Content, ContentImage } from "./styles";
 
 export default function Login() {
+  const session = useSession()
   return (
     <Container>
       <ContentImage>
