@@ -43,3 +43,8 @@ export const Button = styled('button', {
     background: '$gray500'
   }
 })
+
+export const AuthError = styled('p', {
+  color: 'red',
+  fontSize: '$sm',
+})

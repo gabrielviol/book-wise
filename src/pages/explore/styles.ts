@@ -54,7 +54,7 @@ export const Button = styled('button', {
       true: {
         background: '$purple200',
         color: '$gray200',
-        border: 'none',
+        border: '1px solid transparent',
       }
     }
   }

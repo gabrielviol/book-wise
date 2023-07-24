@@ -30,6 +30,17 @@ export const authOptions: NextAuthOptions = {
     })
 
   ],
+
+  callbacks: {
+    async signIn() {
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return '/'
+      } else {
+        return '/login?error=permissions'
+      }
+    }
+  }
 }
 
 export default NextAuth(authOptions)

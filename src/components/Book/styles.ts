@@ -13,9 +13,8 @@ export const HeaderComment = styled('div', {
   display: 'flex',
   gap: '$6',
   'img': {
-    width: '108px',
-    height: '152px',
-    border: '1px solid red',
+    maxWidth: '108px',
+    maxHeight: '152px',
     borderRadius: '4px'
   }
 })
