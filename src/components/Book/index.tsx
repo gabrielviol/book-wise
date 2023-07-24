@@ -22,7 +22,7 @@ export default function Book({ book }: { book: BookProps }) {
   const parts = cover_url.split("books/");
   const imageName = parts[1]
   const linkImg = `/images/books/${imageName}`
-  console.log(linkImg)
+
   return (
     <ContainerCard>
       <HeaderComment>

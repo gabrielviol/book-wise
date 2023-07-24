@@ -11,8 +11,33 @@ import {
   HeaderTrending,
   TrendingBooks
 } from "./styles";
+import { useEffect, useState } from "react";
+import { api } from "@/lib/axios";
+
+interface RatingProps {
+  id: string
+  bookId: string
+  userId: string
+  description: string
+  rate: number
+  createdAt: Date
+}
 
 export default function Home() {
+  const [ratings, setRatings] = useState<RatingProps[] | null>(null)
+  const getRatings = async () => {
+    try {
+      const response = await api.get('/get/rating')
+      const ratings = response.data
+      setRatings(ratings)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  useEffect(() => {
+    getRatings()
+  }, [])
+  console.log(ratings)
   return (
     <Container>
       <Navbar />
@@ -20,13 +45,9 @@ export default function Home() {
         <span><ChartLineUp size={28} />Início</span>
         <p>Avaliações mais recentes</p>
         <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
+        {ratings?.map(rating => (
+          <Comment />
+        ))}
       </Content>
       <TrendingBooks>
         <HeaderTrending>
