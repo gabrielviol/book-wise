@@ -1,4 +1,5 @@
 import { CaretRight, ChartLineUp } from "@phosphor-icons/react";
+import { useSelector } from "react-redux"
 
 import Rating from "@/components/Rating";
 import Comment from "@/components/Comment";
@@ -13,6 +14,8 @@ import {
 } from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/axios";
+import { UserState, setUsers } from "@/store/reducers/userReducer";
+import { wrapper } from "@/store";
 
 interface RatingProps {
   id: string
@@ -24,6 +27,8 @@ interface RatingProps {
 }
 
 export default function Home() {
+  const users = useSelector(UserState)
+  console.log(users)
   const [ratings, setRatings] = useState<RatingProps[] | null>(null)
   const getRatings = async () => {
     try {
@@ -37,7 +42,6 @@ export default function Home() {
   useEffect(() => {
     getRatings()
   }, [])
-  console.log(ratings)
   return (
     <Container>
       <Navbar />
@@ -78,3 +82,22 @@ export default function Home() {
     </Container>
   )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async () => {
+      try {
+        console.log('Fetching users...')
+        const response = await api.get('/get/users')
+        console.log('Response:', response)
+        store.dispatch(setUsers(response))
+      } catch (error) {
+        console.log('Error:', error)
+      }
+      return {
+        props: {
+
+        }
+      }
+    }
+)
