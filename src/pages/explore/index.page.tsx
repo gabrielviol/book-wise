@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import { Button, Categories, Container, Content, Header, ListBooks } from "./styles";
 import { Binoculars } from "@phosphor-icons/react";
 import Input from "@/components/Input";
-import BookCard from "@/components/BookCard";
 import Book from "@/components/Book";
 import { api } from "@/lib/axios";
 import { useEffect, useState } from "react";

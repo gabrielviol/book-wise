@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { UserState } from "@/store/reducers/userReducer";
+
 import Avatar from "../Avatar";
 import Rating from "../Rating";
 
@@ -9,14 +12,17 @@ import {
   InfoBook
 } from "./styles";
 
-export default function Comment() {
+export default function Comment({ userId }) {
+  const users = useSelector(UserState)
+  const userSelected = users.find(user => user.id === userId)
+
   return (
     <ContainerComment>
       <HeaderComment>
         <TitleComment>
-          <Avatar />
+          <Avatar userId={userId} />
           <div>
-            <h2>Gabriel Oliveira</h2>
+            <h2>{userSelected?.name}</h2>
             <p>Hoje</p>
           </div>
         </TitleComment>
