@@ -3,8 +3,8 @@ import { Button, Categories, Container, Content, Header, ListBooks } from "./sty
 import { Binoculars } from "@phosphor-icons/react";
 import Input from "@/components/Input";
 import Book from "@/components/Book";
-import { api } from "@/lib/axios";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { BookState } from "@/store/reducers/booksReducer";
 
 interface BookProps {
   author: string
@@ -17,19 +17,8 @@ interface BookProps {
 }
 
 export default function Explore() {
-  const [books, setBooks] = useState<BookProps[] | null>(null)
-  const getBooks = async () => {
-    try {
-      const response = await api.get('/get/books')
-      const books = response.data
-      setBooks(books)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-  useEffect(() => {
-    getBooks()
-  }, [])
+  const books = useSelector(BookState)
+
   return (
     <Container>
       <Navbar />

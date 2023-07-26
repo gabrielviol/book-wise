@@ -1,4 +1,5 @@
-import { styled } from "@stitches/react"
+import { styled } from "../../../stitches.config"
+
 
 export const ContainerComment = styled('div', {
   width: '608px',
@@ -34,6 +35,11 @@ export const ContentComment = styled('div', {
   display: 'flex',
   height: '100%',
   gap: '1rem',
+  'img': {
+    minWidth: '108px',
+    minHeight: '152px',
+    borderRadius: '4px'
+  }
 })
 
 export const InfoBook = styled('div', {
@@ -49,7 +55,7 @@ export const InfoBook = styled('div', {
     marginBottom: '$6'
   },
   'p': {
-    fontSize: '$xs',
+    fontSize: '$sm',
     fontWeight: '$regular',
     lineHeight: '$tall',
     color: '$gray300'

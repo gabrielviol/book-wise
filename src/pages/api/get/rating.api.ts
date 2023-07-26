@@ -7,7 +7,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const rating = await prisma.rating.findMany();
+    const rating = await prisma.rating.findMany({
+      orderBy: {
+        created_at: 'desc'
+      },
+    });
     return res.json(rating)
   } catch (error) {
     console.error(error)

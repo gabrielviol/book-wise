@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/axios";
 import { CaretRight, ChartLineUp } from "@phosphor-icons/react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 import Rating from "@/components/Rating";
 import Comment from "@/components/Comment";
 import Navbar from "@/components/Navbar";
 
-import { UserState } from "@/store/reducers/userReducer";
-import { fetchUsers } from "@/store/fetchActions";
+import { fetchBooks, fetchUsers } from "@/store/fetchActions";
 
 import {
   BookCard,
@@ -31,7 +30,6 @@ export default function Home() {
   const [ratings, setRatings] = useState<RatingProps[] | null>(null)
 
   const dispatch = useDispatch()
-  const users = useSelector(UserState)
 
   const getRatings = async () => {
     try {
@@ -45,6 +43,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchUsers())
+    dispatch(fetchBooks())
     getRatings()
   }, [])
 
@@ -55,7 +54,12 @@ export default function Home() {
         <span><ChartLineUp size={28} />Início</span>
         <p>Avaliações mais recentes</p>
         {ratings?.map((rating, i) => (
-          <Comment key={rating.book_id + i} userId={rating.user_id} />
+          <Comment
+            key={rating.book_id + i}
+            userId={rating.user_id}
+            bookId={rating.book_id}
+            createdAt={rating.created_at}
+          />
         ))}
       </Content>
       <TrendingBooks>

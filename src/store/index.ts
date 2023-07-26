@@ -1,11 +1,13 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit'
-import userReducer from './reducers/userReducer'
+import userReducer from './reducers/usersReducer'
 import { createWrapper } from 'next-redux-wrapper'
+import booksReducer from './reducers/booksReducer'
 
 const makeStore = () =>
   configureStore({
     reducer: {
-      user: userReducer
+      user: userReducer,
+      book: booksReducer
     },
     devTools: true
   })

@@ -4,7 +4,7 @@ import UserAvatar from '../../../public/images/Avatar.png'
 
 import { ContainerAvatar } from "./styles";
 import { useSelector } from "react-redux";
-import { UserState } from "@/store/reducers/userReducer";
+import { UserState } from "@/store/reducers/usersReducer";
 
 export default function Avatar({ userId }) {
   const users = useSelector(UserState)

@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
-import { UserState } from "@/store/reducers/userReducer";
+import { UserState } from "@/store/reducers/usersReducer";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import Image from "next/image";
 
 import Avatar from "../Avatar";
 import Rating from "../Rating";
@@ -11,10 +14,31 @@ import {
   ContentComment,
   InfoBook
 } from "./styles";
+import { BookState } from "@/store/reducers/booksReducer";
 
-export default function Comment({ userId }) {
+interface CommentProps {
+  userId: string
+  bookId: string
+  createdAt: Date
+}
+
+export default function Comment({ userId, bookId, createdAt }: CommentProps) {
+
   const users = useSelector(UserState)
   const userSelected = users.find(user => user.id === userId)
+
+  const books = useSelector(BookState)
+  const bookSelected = books.find(book => book.id === bookId)
+
+  const parts = bookSelected?.cover_url.split("books/");
+  const imageName = parts[1] ? parts[1] : ''
+  const linkImg = `/images/books/${imageName}`
+
+  const dateFormated = formatDateToRelativeTime(createdAt)
+  function formatDateToRelativeTime(date) {
+    const formattedDate = formatDistanceToNow(new Date(date), { addSuffix: true, locale: ptBR });
+    return formattedDate;
+  }
 
   return (
     <ContainerComment>
@@ -23,26 +47,27 @@ export default function Comment({ userId }) {
           <Avatar userId={userId} />
           <div>
             <h2>{userSelected?.name}</h2>
-            <p>Hoje</p>
+            <p>{dateFormated}</p>
           </div>
         </TitleComment>
         <Rating />
       </HeaderComment>
       <ContentComment>
-        <div>
-          Imagem livro
-        </div>
+        <Image
+          src={linkImg}
+          alt={bookSelected ? bookSelected.name : 'null'}
+          width={108}
+          height={152}
+          quality={80}
+        />
         <InfoBook>
-          <h2>O Hobbit</h2>
-          <h3>J.R.R Tolkien</h3>
+          <h2>{bookSelected.name}</h2>
+          <h3>{bookSelected.author}</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quibusdam sunt facere
-            perferendis saepe reprehenderit expedita reiciendis molestiae doloribus rem commodi
-            eos aspernatur, impedit quis illum consequatur vero asperiores iste.
+            {bookSelected.summary}
           </p>
         </InfoBook>
       </ContentComment>
     </ContainerComment>
   )
-
 }

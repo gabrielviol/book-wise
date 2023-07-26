@@ -11,6 +11,7 @@ export const ContainerCard = styled('div', {
 
 export const HeaderComment = styled('div', {
   display: 'flex',
+  height: '100%',
   gap: '$6',
   'img': {
     maxWidth: '108px',

@@ -19,7 +19,6 @@ export default function Login() {
     if (session.status === 'authenticated')
       router.push('/')
   }, [session])
-  console.log(session)
 
   return (
     <Container>
